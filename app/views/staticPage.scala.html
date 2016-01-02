@@ -1,0 +1,7 @@
+@(title:String, NavItems:List[(String, String)], ActiveNavItem:String)(content:String)
+
+@main(title, NavItems, ActiveNavItem){
+  <div class="container">
+      @Html(content)
+  </div>
+}

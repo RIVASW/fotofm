@@ -1,0 +1,52 @@
+@(title: String, NavItems:List[(String, String)], ActiveNavItem:String)(imgIds: List[Int], content: Html)
+
+@main(title, NavItems, ActiveNavItem){
+    <div class = "container">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+
+            <div id="photo-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+                    <!-- Indicators -->
+                <ol class="carousel-indicators">
+                @for(i <- 0 to imgIds.length - 1){
+                    @if(i == 0) {
+                        <li data-target="#photo-carousel" data-slide-to="0" class="active"></li>
+                    } else {
+                        <li data-target="#photo-carousel" data-slide-to="@i"></li>
+                    }
+                }
+                </ol>
+
+                    <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    @for(imgId <- imgIds){
+                        @if(imgId == imgIds.head){
+                            <div class="item active">
+                        } else {
+                            <div class="item">
+                        }
+                        <img src="@routes.Image.getImage("slsh", imgId.toString)">
+                        </div>
+                    }
+                </div>
+
+                    <!-- Controls -->
+                <a class="left carousel-control" href="#photo-carousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Предыдущий</span>
+                </a>
+                <a class="right carousel-control" href="#photo-carousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Следующий</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    @content
+
+    <script src="@routes.Assets.at("javascripts/jquery-1.9.1.min.js")"></script>
+    <script src="@routes.Assets.at("javascripts/bootstrap.min.js")"></script>
+    <script src="@routes.Assets.at("javascripts/docs.min.js")"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="@routes.Assets.at("javascripts/ie10-viewport-bug-workaround.js")"></script>
+    <script>$('.photo-carousel').carousel()</script>
+}

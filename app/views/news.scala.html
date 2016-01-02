@@ -1,0 +1,22 @@
+@(news:List[News])
+
+<div class="container">
+  <div class="row" style="margin-top:20px;">
+
+    @for(item <- news){
+      <div class="col-md-12">
+        <div class="col-md-4">
+          <div>
+            <img src="@routes.Image.getImage("news", item.imageId.toString)" alt="" class = "img-responsive"><br>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <h4><a href = "@item.link"> @item.title </a></h4>
+          <p>@item.description</p>
+          <h5 class="pull-right text-muted">@item.date.toString("yyyy-MM-dd")</h5>
+        </div>
+      </div>
+    }
+
+  </div>
+</div>
